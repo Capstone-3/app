@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "116417214014",
+    "firebase_url": "https://test-81bb3-default-rtdb.firebaseio.com",
+    "project_id": "test-81bb3",
+    "storage_bucket": "test-81bb3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116417214014:android:fc7417195cb1ea5bfc036f",
+        "android_client_info": {
+          "package_name": "com.seminify.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116417214014-kugllvg2ib8g6ru8508op4b9d2q3dkhf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjHt0e-W2ysQhDAESbirt6cMWseh4qoTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116417214014-kugllvg2ib8g6ru8508op4b9d2q3dkhf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "116417214014-jb6ba468i8ubdv6qo7krstk58si3h916.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.seminify.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
