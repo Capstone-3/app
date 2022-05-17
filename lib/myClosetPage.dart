@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-import 'myClosetApp/alarmTogglePage.dart';
-import 'myClosetApp/itemsPage.dart';
-import 'myClosetApp/statePage.dart';
+class myClosetApp extends StatefulWidget {
+  @override
+  State<myClosetApp> createState() => _myClosetAppState();
+}
 
-class myClosetApp extends StatelessWidget {
+class _myClosetAppState extends State<myClosetApp> {
+  var _count = 1;
+  var url = Uri.parse('http://192.168.200.139:5000/dehumi_post');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,45 +17,49 @@ class myClosetApp extends StatelessWidget {
         title: Text('내 옷장'),
       ),
       body: Container(
-        child: Center(
-            child: ListView(
-          children: <Card>[
-            Card(
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => statePage()));
+        child: Column(
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  varCount();
+                  _callAPI();
                 },
-                child: Image(
-                  image: AssetImage('images/State.jpg'),
-                ),
-              ),
-            ),
-            Card(
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => itemsPage()));
+                child: Text('ON')),
+            ElevatedButton(
+                onPressed: () {
+                  varCount();
+                  _callAPI2();
                 },
-                child: Image(
-                  image: AssetImage('images/Items.jpg'),
-                ),
-              ),
-            ),
-            Card(
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => alarmTogglePage()));
+                child: Text('OFF')),
+            ElevatedButton(
+                onPressed: () {
+                  varCount();
+                  _callAPI3();
                 },
-                child: Image(
-                  image: AssetImage('images/AlarmToggle.jpg'),
-                ),
-              ),
-            ),
+                child: Text('AUTO')),
           ],
-        )),
+        ),
       ),
     );
+  }
+
+  void _callAPI() async {
+    await http.post(url, body: {'inst': 'ON', 'state': '$_count'});
+  }
+
+  void _callAPI2() async {
+    await http.post(url, body: {'inst': 'OFF', 'state': '$_count'});
+  }
+
+  void _callAPI3() async {
+    await http.post(url, body: {'inst': 'AUTO', 'state': '$_count'});
+  }
+
+  void varCount() {
+    if (_count == 1) {
+      _count = 2;
+    } else {
+      _count = 1;
+    }
   }
 }
