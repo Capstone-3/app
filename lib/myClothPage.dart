@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'myClothApp/clothPage.dart';
 import 'myClothApp/tab/acc.dart';
 import 'myClothApp/tab/all.dart';
 import 'myClothApp/tab/outer.dart';
@@ -61,14 +62,7 @@ class _myClothApp extends State<myClothApp>
       ),
       body: TabBarView(
         children: <Widget>[
-          _pickedFile == null
-              ? all()
-              : Column(
-                  children: [
-                    Image.file(File(_pickedFile!.path)),
-                    Text('${_downloadURL}'),
-                  ],
-                ),
+          ClothPage(),
           top(),
           outer(),
           pants(),

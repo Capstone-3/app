@@ -1,3 +1,4 @@
+import 'package:app/myClothApp/clothPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage>
       body: TabBarView(
         children: <Widget>[
           homeApp(),
-          myClothApp(),
+          ClothPage(),
           myClosetApp(),
           clothManagementApp()
         ],
