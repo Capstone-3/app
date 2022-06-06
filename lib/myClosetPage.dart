@@ -13,10 +13,23 @@ class _myClosetAppState extends State<myClosetApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('내 옷장'),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            '내 옷장',
+            style: TextStyle(
+              color: Colors.black,fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
       body: Container(
+        width: double.infinity,
+        color: Color.fromRGBO(239, 238, 245, 100),
         child: Column(
           children: [
             ElevatedButton(

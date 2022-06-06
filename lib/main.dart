@@ -1,12 +1,10 @@
-import 'package:app/myClothApp/clothPage.dart';
+import 'package:app/myClothPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'clothManagementPage.dart';
 import 'firebase_options.dart';
 import 'homePage.dart';
 import 'myClosetPage.dart';
-import 'myClothPage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -55,16 +53,19 @@ class _MyHomePageState extends State<MyHomePage>
       body: TabBarView(
         children: <Widget>[
           homeApp(),
-          ClothPage(),
+          myClothApp(),
           myClosetApp(),
-          clothManagementApp()
         ],
         controller: _tabController,
       ),
       bottomNavigationBar: TabBar(
+        indicator:
+            BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(50))),
         tabs: <Tab>[
           Tab(
+            height: 60,
             icon: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.home),
                 Text('홈'),
@@ -72,7 +73,9 @@ class _MyHomePageState extends State<MyHomePage>
             ),
           ),
           Tab(
+            height: 60,
             icon: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.home),
                 Text('내 옷'),
@@ -80,24 +83,18 @@ class _MyHomePageState extends State<MyHomePage>
             ),
           ),
           Tab(
+            height: 60,
             icon: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.home),
                 Text('내 옷장'),
               ],
             ),
           ),
-          Tab(
-            icon: Column(
-              children: [
-                Icon(Icons.home),
-                Text('옷 관리'),
-              ],
-            ),
-          ),
         ],
         controller: _tabController,
-        labelColor: Colors.blue,
+        labelColor: Color.fromRGBO(112, 125, 222, 100),
         unselectedLabelColor: Colors.grey,
       ),
     );

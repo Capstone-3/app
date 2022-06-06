@@ -1,11 +1,6 @@
-import 'dart:io';
-
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:image_picker/image_picker.dart';
 
-import 'myClothApp/clothPage.dart';
 import 'myClothApp/tab/acc.dart';
 import 'myClothApp/tab/all.dart';
 import 'myClothApp/tab/outer.dart';
@@ -20,11 +15,8 @@ class myClothApp extends StatefulWidget {
 
 class _myClothApp extends State<myClothApp>
     with SingleTickerProviderStateMixin {
-  XFile? _pickedFile;
-  String? _downloadURL;
+  final reference = FirebaseDatabase.instance.ref().child('cloth');
   TabController? _tabController;
-  final ImagePicker _imagePicker = ImagePicker();
-  final storageRef = FirebaseStorage.instance.ref();
 
   @override
   void initState() {
@@ -35,26 +27,66 @@ class _myClothApp extends State<myClothApp>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('내 옷'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          '내 옷',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         bottom: TabBar(
+          indicator: BoxDecoration(
+            color: Color.fromRGBO(112, 125, 222, 100),
+          ),
+          isScrollable: true,
           tabs: <Tab>[
             Tab(
-              icon: Text('전체'),
+              icon: Text(
+                '전체',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
             ),
             Tab(
-              icon: Text('아우터'),
+              icon: Text(
+                '아우터',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
             ),
             Tab(
-              icon: Text('상의'),
+              icon: Text(
+                '상의',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
             ),
             Tab(
-              icon: Text('하의'),
+              icon: Text(
+                '하의',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
             ),
             Tab(
-              icon: Text('신발'),
+              icon: Text(
+                '신발',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
             ),
             Tab(
-              icon: Text('악세사리'),
+              icon: Text(
+                '악세사리',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
             ),
           ],
           controller: _tabController,
@@ -62,7 +94,7 @@ class _myClothApp extends State<myClothApp>
       ),
       body: TabBarView(
         children: <Widget>[
-          ClothPage(),
+          all(),
           top(),
           outer(),
           pants(),
@@ -71,40 +103,11 @@ class _myClothApp extends State<myClothApp>
         ],
         controller: _tabController,
       ),
-      floatingActionButton: SpeedDial(
-        children: [
-          SpeedDialChild(
-            onTap: () {
-              pickImage(ImageSource.camera);
-            },
-            child: Icon(Icons.photo_camera),
-          ),
-          SpeedDialChild(
-            onTap: () {
-              pickImage(ImageSource.gallery);
-            },
-            child: Icon(Icons.image),
-          )
-        ],
-        child: Icon(Icons.add),
-      ),
     );
   }
 
   @override
   void dispose() {
     _tabController!.dispose();
-  }
-
-  Future<void> pickImage(ImageSource imageSource) async {
-    final pickedFile = await _imagePicker.pickImage(source: imageSource);
-    Reference? imagesRef = storageRef
-        .child("images/${DateTime.now().millisecondsSinceEpoch}.jpeg.");
-    await imagesRef.putFile(File(pickedFile!.path));
-    final downloadURL = await imagesRef.getDownloadURL();
-    setState(() {
-      _pickedFile = pickedFile;
-      _downloadURL = downloadURL;
-    });
   }
 }
