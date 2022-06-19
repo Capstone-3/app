@@ -1,6 +1,6 @@
 # app
 
-A new Flutter project.
+A Capstone project.
 
 ## Getting Started
 

@@ -1,4 +1,4 @@
-package com.seminify.app;
+package com.capstone.app;
 
 import io.flutter.embedding.android.FlutterActivity;
 
