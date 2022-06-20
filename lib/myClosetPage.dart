@@ -44,7 +44,7 @@ class _myClosetAppState extends State<myClosetApp> {
                       MaterialPageRoute(builder: (context) => weatherPage()));
                 },
                 child: Image(
-                  image: AssetImage('images/Weather.jpg'),
+                  image: AssetImage('images/dehumidifier.png'),
                 ),
               ),
             ),
@@ -58,7 +58,7 @@ class _myClosetAppState extends State<myClosetApp> {
                       MaterialPageRoute(builder: (context) => codyPage()));
                 },
                 child: Image(
-                  image: AssetImage('images/Cody.jpg'),
+                  image: AssetImage('images/defuser.png'),
                 ),
               ),
             ),

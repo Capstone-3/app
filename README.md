@@ -1,6 +1,6 @@
 # app
 
-A Capstone project.
+A new Capstone project.
 
 ## Getting Started
 
