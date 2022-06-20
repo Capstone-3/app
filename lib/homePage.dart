@@ -24,9 +24,7 @@ class homeApp extends StatelessWidget {
         color: Color.fromRGBO(239, 238, 245, 100),
         child: Center(
             child: ListView(
-          children: <Card>[
-
-          ],
+          children: <Card>[],
         )),
       ),
     );

@@ -63,8 +63,10 @@ class _MyHomePageState extends State<MyHomePage>
         currentIndex: _selectedIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
-          BottomNavigationBarItem(icon: Icon(Icons.perm_identity), label: '내 옷'),
-          BottomNavigationBarItem(icon: Icon(Icons.manage_accounts), label: '내 옷장'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.perm_identity), label: '내 옷'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.manage_accounts), label: '내 옷장'),
         ],
       ),
     );

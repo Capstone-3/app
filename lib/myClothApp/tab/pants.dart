@@ -35,74 +35,79 @@ class _pantsState extends State<pants> {
           child: clothes.length == 0
               ? CircularProgressIndicator()
               : GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
-            itemBuilder: (context, index) {
-              return Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-                margin: EdgeInsets.only(left: 10, top: 10),
-                child: GridTile(
-                  child: Container(
-                    padding: EdgeInsets.only(top: 20, bottom: 20),
-                    child: SizedBox(
-                      child: GestureDetector(
-                        onTap: () async {
-                          Cloth? cloth = await Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      ClothDetailPage(
-                                          reference, clothes[index])));
-                          if (cloth != null) {
-                            setState(() {
-                              clothes[index].title = cloth.title;
-                              clothes[index].imageUrl = cloth.imageUrl;
-                            });
-                          }
-                        },
-                        onLongPress: () {
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text('삭제하시겠습니까?'),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () {
-                                        reference
-                                            .child(clothes[index].key!)
-                                            .remove()
-                                            .then((_) {
-                                          setState(() {
-                                            clothes.removeAt(index);
-                                            Navigator.of(context).pop();
-                                          });
-                                        });
-                                      },
-                                      child: Text('예'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text('아니요'),
-                                    ),
-                                  ],
-                                );
-                              });
-                        },
-                        child: Image.network(clothes[index].imageUrl),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemBuilder: (context, index) {
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      margin: EdgeInsets.only(left: 10, top: 10),
+                      child: GridTile(
+                        child: Container(
+                          padding: EdgeInsets.only(top: 20, bottom: 20),
+                          child: SizedBox(
+                            child: GestureDetector(
+                              onTap: () async {
+                                Cloth? cloth = await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            ClothDetailPage(
+                                                reference, clothes[index])));
+                                if (cloth != null) {
+                                  setState(() {
+                                    clothes[index].title = cloth.title;
+                                    clothes[index].imageUrl = cloth.imageUrl;
+                                  });
+                                }
+                              },
+                              onLongPress: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text('삭제하시겠습니까?'),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () {
+                                              reference
+                                                  .child(clothes[index].key!)
+                                                  .remove()
+                                                  .then((_) {
+                                                setState(() {
+                                                  clothes.removeAt(index);
+                                                  Navigator.of(context).pop();
+                                                });
+                                              });
+                                            },
+                                            child: Text('예'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('아니요'),
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              },
+                              child: Image.network(clothes[index].imageUrl),
+                            ),
+                          ),
+                        ),
+                        header: Text(
+                          clothes[index].title,
+                          textAlign: TextAlign.center,
+                        ),
+                        footer: Text(
+                          clothes[index].createTime.substring(0, 10),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                  ),
-                  header: Text(clothes[index].title),
-                  footer:
-                  Text(clothes[index].createTime.substring(0, 10)),
+                    );
+                  },
+                  itemCount: clothes.length,
                 ),
-              );
-            },
-            itemCount: clothes.length,
-          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
