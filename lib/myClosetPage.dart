@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'myClosetApp/codyPage.dart';
+import 'myClosetApp/weather.dart';
+
 class myClosetApp extends StatefulWidget {
   @override
   State<myClosetApp> createState() => _myClosetAppState();
@@ -13,45 +16,54 @@ class _myClosetAppState extends State<myClosetApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          centerTitle: true,
-          title: Text(
-            '내 옷장',
-            style: TextStyle(
-              color: Colors.black,fontWeight: FontWeight.bold,
-            ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          '옷장 관리',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
       body: Container(
-        width: double.infinity,
+        padding: EdgeInsets.only(top: 10),
         color: Color.fromRGBO(239, 238, 245, 100),
-        child: Column(
-          children: [
-            ElevatedButton(
-                onPressed: () {
-                  varCount();
-                  _callAPI();
+        child: Center(
+            child: ListView(
+          children: <Card>[
+            Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30))),
+              margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => weatherPage()));
                 },
-                child: Text('ON')),
-            ElevatedButton(
-                onPressed: () {
-                  varCount();
-                  _callAPI2();
+                child: Image(
+                  image: AssetImage('images/Weather.jpg'),
+                ),
+              ),
+            ),
+            Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30))),
+              margin: EdgeInsets.only(left: 10, right: 10, top: 20),
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => codyPage()));
                 },
-                child: Text('OFF')),
-            ElevatedButton(
-                onPressed: () {
-                  varCount();
-                  _callAPI3();
-                },
-                child: Text('AUTO')),
+                child: Image(
+                  image: AssetImage('images/Cody.jpg'),
+                ),
+              ),
+            ),
           ],
-        ),
+        )),
       ),
     );
   }
