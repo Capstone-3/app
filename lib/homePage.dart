@@ -11,7 +11,7 @@ class homeApp extends StatelessWidget {
           elevation: 0,
           centerTitle: true,
           title: Text(
-            'Hicloset',
+            'NAEUM',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
