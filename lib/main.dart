@@ -39,70 +39,34 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
-  TabController? _tabController;
+  int _selectedIndex = 0;
+  final List<Widget> _widgetOptions = <Widget>[
+    homeApp(),
+    myClothApp(),
+    myClosetApp(),
+  ];
 
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: TabBarView(
-        children: <Widget>[
-          homeApp(),
-          myClothApp(),
-          myClosetApp(),
-        ],
-        controller: _tabController,
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: TabBar(
-        indicator:
-            BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(50))),
-        tabs: <Tab>[
-          Tab(
-            height: 60,
-            icon: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.home),
-                Text('홈'),
-              ],
-            ),
-          ),
-          Tab(
-            height: 60,
-            icon: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.home),
-                Text('내 옷'),
-              ],
-            ),
-          ),
-          Tab(
-            height: 60,
-            icon: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.home),
-                Text('내 옷장'),
-              ],
-            ),
-          ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
+          BottomNavigationBarItem(icon: Icon(Icons.perm_identity), label: '내 옷'),
+          BottomNavigationBarItem(icon: Icon(Icons.manage_accounts), label: '내 옷장'),
         ],
-        controller: _tabController,
-        labelColor: Color.fromRGBO(112, 125, 222, 100),
-        unselectedLabelColor: Colors.grey,
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _tabController!.dispose();
-    super.dispose();
   }
 }
