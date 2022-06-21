@@ -32,12 +32,12 @@ class _myClosetAppState extends State<myClosetApp> {
         padding: EdgeInsets.only(top: 10),
         color: Color.fromRGBO(239, 238, 245, 100),
         child: Center(
-            child: ListView(
+            child: GridView.count(
+          crossAxisCount: 2,
           children: <Card>[
             Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(30))),
-              margin: EdgeInsets.only(left: 10, right: 10, top: 10),
               child: InkWell(
                 onTap: () {
                   Navigator.of(context).push(
@@ -51,7 +51,6 @@ class _myClosetAppState extends State<myClosetApp> {
             Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(30))),
-              margin: EdgeInsets.only(left: 10, right: 10, top: 20),
               child: InkWell(
                 onTap: () {
                   Navigator.of(context).push(
