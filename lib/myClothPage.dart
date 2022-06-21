@@ -44,41 +44,31 @@ class _myClothApp extends State<myClothApp>
             Tab(
               icon: Text(
                 '아우터',
-                style: TextStyle(
-                  color: Colors.black,
-                ),
+                style: TextStyle(color: Colors.black, fontSize: 12),
               ),
             ),
             Tab(
               icon: Text(
                 '상의',
-                style: TextStyle(
-                  color: Colors.black,
-                ),
+                style: TextStyle(color: Colors.black, fontSize: 12),
               ),
             ),
             Tab(
               icon: Text(
                 '하의',
-                style: TextStyle(
-                  color: Colors.black,
-                ),
+                style: TextStyle(color: Colors.black, fontSize: 12),
               ),
             ),
             Tab(
               icon: Text(
                 '신발',
-                style: TextStyle(
-                  color: Colors.black,
-                ),
+                style: TextStyle(color: Colors.black, fontSize: 12),
               ),
             ),
             Tab(
               icon: Text(
                 '악세사리',
-                style: TextStyle(
-                  color: Colors.black,
-                ),
+                style: TextStyle(color: Colors.black, fontSize: 12),
               ),
             ),
           ],

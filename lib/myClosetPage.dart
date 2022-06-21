@@ -35,25 +35,35 @@ class _myClosetAppState extends State<myClosetApp> {
         padding: EdgeInsets.only(top: 10),
         color: Color.fromRGBO(239, 238, 245, 100),
         child: Center(
-            child: GridView.count(
-          crossAxisCount: 2,
-          children: <Card>[
-            Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(30))),
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              width: 200,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30),
+                ),
+              ),
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => dehumidifierPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => dehumidifierPage()));
                 },
                 child: Image(
                   image: AssetImage('images/dehumidifier.png'),
                 ),
               ),
             ),
-            Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(30))),
+            Container(
+              width: 200,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30),
+                ),
+              ),
               child: InkWell(
                 onTap: () {
                   Navigator.of(context).push(

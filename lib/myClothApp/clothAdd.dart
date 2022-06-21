@@ -48,7 +48,7 @@ class _ClothAddPageState extends State<ClothAddPage> {
       body: Container(
         padding: EdgeInsets.all(20),
         child: Center(
-          child: Column(
+          child: ListView(
             children: <Widget>[
               TextField(
                 controller: titleController,
@@ -59,13 +59,16 @@ class _ClothAddPageState extends State<ClothAddPage> {
               ),
               SizedBox(
                   child: _pickedFile != null
-                      ? Image(image: FileImage(File(_pickedFile!.path)))
+                      ? Image(
+                          image: FileImage(File(_pickedFile!.path)),
+                          height: 400,
+                        )
                       : null),
               Expanded(
                 child: TextField(
                   controller: contentController,
                   keyboardType: TextInputType.multiline,
-                  maxLines: 100,
+                  maxLines: 2,
                   decoration: InputDecoration(labelText: '내용'),
                 ),
               ),
