@@ -2,7 +2,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'myClothApp/tab/acc.dart';
-import 'myClothApp/tab/all.dart';
 import 'myClothApp/tab/outer.dart';
 import 'myClothApp/tab/pants.dart';
 import 'myClothApp/tab/shoes.dart';
@@ -20,7 +19,7 @@ class _myClothApp extends State<myClothApp>
 
   @override
   void initState() {
-    _tabController = new TabController(length: 6, vsync: this);
+    _tabController = new TabController(length: 5, vsync: this);
   }
 
   @override
@@ -38,16 +37,7 @@ class _myClothApp extends State<myClothApp>
           indicator: BoxDecoration(
             color: Color.fromRGBO(112, 125, 222, 100),
           ),
-          isScrollable: true,
           tabs: <Tab>[
-            Tab(
-              icon: Text(
-                '전체',
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
             Tab(
               icon: Text(
                 '아우터',
@@ -94,7 +84,6 @@ class _myClothApp extends State<myClothApp>
       ),
       body: TabBarView(
         children: <Widget>[
-          all(),
           top(),
           outer(),
           pants(),

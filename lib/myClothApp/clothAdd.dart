@@ -34,7 +34,16 @@ class _ClothAddPageState extends State<ClothAddPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('내 옷 추가'),
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          '내 옷 추가',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.all(20),
@@ -48,15 +57,17 @@ class _ClothAddPageState extends State<ClothAddPage> {
                   fillColor: Colors.blueAccent,
                 ),
               ),
+              SizedBox(
+                  child: _pickedFile != null
+                      ? Image(image: FileImage(File(_pickedFile!.path)))
+                      : null),
               Expanded(
-                child: _pickedFile == null
-                    ? TextField(
-                        controller: contentController,
-                        keyboardType: TextInputType.multiline,
-                        maxLines: 100,
-                        decoration: InputDecoration(labelText: '이미지'),
-                      )
-                    : Image(image: FileImage(File(_pickedFile!.path))),
+                child: TextField(
+                  controller: contentController,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 100,
+                  decoration: InputDecoration(labelText: '내용'),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -85,6 +96,7 @@ class _ClothAddPageState extends State<ClothAddPage> {
                       .push()
                       .set(Cloth(
                         titleController!.value.text,
+                        contentController!.value.text,
                         imageUrl,
                         DateTime.now().toIso8601String(),
                       ).toJson())
