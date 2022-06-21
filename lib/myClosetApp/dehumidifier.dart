@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 var _count1 = 1;
 var waterlevel2 = 0;
-var url1 = Uri.parse('http://192.168.200.139:5000/dehumi_post'); // 수분 정보 보내는 주소
+var url1 = Uri.parse('http://192.168.200.143:5000/dehumi_post'); // 수분 정보 보내는 주소
 
 Future<Info> fetchInfo() async {
   var url2 = '/recive_data'; // 수분 정보 받을 데이터
@@ -46,12 +46,12 @@ class Info {
   }
 }
 
-class weatherPage extends StatefulWidget {
+class dehumidifierPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _weatherPage();
+  State<StatefulWidget> createState() => _dehumidifierPage();
 }
 
-class _weatherPage extends State<weatherPage> {
+class _dehumidifierPage extends State<dehumidifierPage> {
   Future<Info>? info;
 
   @override
@@ -64,8 +64,16 @@ class _weatherPage extends State<weatherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('제습기 관리', style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+          backgroundColor: Colors.white,
+          elevation: 0,
           centerTitle: true,
+          title: Text(
+            '제습기 관리',
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
         ),
         body: Center(
           child: FutureBuilder<Info>(

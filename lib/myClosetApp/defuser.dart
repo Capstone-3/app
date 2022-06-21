@@ -9,9 +9,9 @@ var scant = 3;
 var hour = 07;
 var minute = 30;
 
-var url1 = Uri.parse('http://192.168.200.139:5000/schedule_post');
+var url1 = Uri.parse('http://192.168.200.143:5000/schedule_post');
 //시간 예약 전송 주소
-var url2 = Uri.parse('http://192.168.200.139:5000/defuse_post');
+var url2 = Uri.parse('http://192.168.200.143:5000/defuse_post');
 //디퓨저 설정 전송 주소
 
 Future<Info> fetchInfo() async {
@@ -67,12 +67,12 @@ class Info {
   }
 }
 
-class codyPage extends StatefulWidget {
+class defuserPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _codyPage();
+  State<StatefulWidget> createState() => _defuserPage();
 }
 
-class _codyPage extends State<codyPage> {
+class _defuserPage extends State<defuserPage> {
   Future<Info>? info;
   final myController1 = TextEditingController();
   final myController2 = TextEditingController();
@@ -87,7 +87,16 @@ class _codyPage extends State<codyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('방향제 관리'),
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            '방향제 관리',
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
         ),
         body: Center(
           child: FutureBuilder<Info>(
@@ -97,117 +106,127 @@ class _codyPage extends State<codyPage> {
               if (snapshot.hasData) {
                 return buildColumn2(snapshot);
               } else if (snapshot.hasError) {
-                return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                return ListView(children: [
+                  TextField(
+                      controller: myController1,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: '예약 시간 입력',
+                      )),
+
+                  TextField(
+                      controller: myController2,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: '예약 분 입력',
+                      )),
+
+                  Text("연결 실패 에러!!", style: TextStyle(fontSize: 25)),
+                  SizedBox(height: 50),
+
+                  ElevatedButton(
+                      onPressed: () {
+                        scant = 0;
+                        varCount2();
+                        _callAPI_1();
+                      },
+                      child: Text('1번째 향')),
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                      onPressed: () {
+                        scant = 1;
+                        varCount2();
+                        _callAPI_2();
+                      },
+                      child: Text('2번째 향')),
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                      onPressed: () {
+                        scant = 2;
+                        varCount2();
+                        _callAPI_3();
+                      },
+                      child: Text('3번째 향')),
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                      onPressed: () {
+                        scant = 3;
+                        varCount2();
+                        _callAPI_4();
+                      },
+                      child: Text('끄기')),
+                  SizedBox(height: 30),
+
+                  // dehumi
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      TextField(
-                          controller: myController1,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: '예약 시간 입력',
-                          )),
-
-                      TextField(
-                          controller: myController2,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: '예약 분 입력',
-                          )),
-
-                      Text("연결 실패 에러!!", style: TextStyle(fontSize: 25)),
-                      SizedBox(height: 50),
-
-                      ElevatedButton(
-                          onPressed: () {
-                            scant = 0;
-                            varCount2();
-                            _callAPI_1();
-                          },
-                          child: Text('1번째 향')),
-                      SizedBox(height: 10),
-                      ElevatedButton(
-                          onPressed: () {
-                            scant = 1;
-                            varCount2();
-                            _callAPI_2();
-                          },
-                          child: Text('2번째 향')),
-                      SizedBox(height: 10),
-                      ElevatedButton(
-                          onPressed: () {
-                            scant = 2;
-                            varCount2();
-                            _callAPI_3();
-                          },
-                          child: Text('3번째 향')),
-                      SizedBox(height: 10),
-                      ElevatedButton(
-                          onPressed: () {
-                            scant = 3;
-                            varCount2();
-                            _callAPI_4();
-                          },
-                          child: Text('끄기')),
-                      SizedBox(height: 30),
-
-                      // dehumi
-                      ElevatedButton(
+                      Container(
+                        width: 50,
+                        child: ElevatedButton(
                           onPressed: () {
                             _callAPI();
                           },
-                          child: Text('월')),
-                      SizedBox(height: 10),
-
-                      ElevatedButton(
+                          child: Text('월'),
+                        ),
+                      ),
+                      Container(
+                        width: 50,
+                        child: ElevatedButton(
                           onPressed: () {
                             _callAPI2();
                           },
-                          child: Text('화')),
-                      SizedBox(height: 10),
-
-                      ElevatedButton(
+                          child: Text('화'),
+                        ),
+                      ),
+                      Container(
+                        width: 50,
+                        child: ElevatedButton(
                           onPressed: () {
                             _callAPI3();
                           },
-                          child: Text('수')),
-                      SizedBox(height: 10),
-
-                      ElevatedButton(
+                          child: Text('수'),
+                        ),
+                      ),
+                      Container(
+                        width: 50,
+                        child: ElevatedButton(
                           onPressed: () {
                             _callAPI4();
                           },
-                          child: Text('목')),
-                      SizedBox(height: 10),
-
-                      ElevatedButton(
+                          child: Text('목'),
+                        ),
+                      ),
+                      Container(
+                        width: 50,
+                        child: ElevatedButton(
                           onPressed: () {
                             _callAPI5();
                           },
-                          child: Text('금')),
-                      SizedBox(height: 10),
-
-                      ElevatedButton(
+                          child: Text('금'),
+                        ),
+                      ),
+                      Container(
+                        width: 50,
+                        child: ElevatedButton(
                           onPressed: () {
                             _callAPI6();
                           },
-                          child: Text('토')),
-                      SizedBox(height: 10),
-
-                      ElevatedButton(
+                          child: Text('토'),
+                        ),
+                      ),
+                      Container(
+                        width: 50,
+                        child: ElevatedButton(
                           onPressed: () {
                             _callAPI7();
                           },
-                          child: Text('일')),
-                      SizedBox(height: 10),
-
-                      RaisedButton(
-                          child: Text('디퓨저 페이지로 이동하기'),
-                          onPressed: () {
-                            // 눌렀을 때 두 번째 route로 이동합니다.
-                            Navigator.pop(context);
-                          }),
-                    ]);
+                          child: Text('일'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ]);
               }
               return CircularProgressIndicator();
             },

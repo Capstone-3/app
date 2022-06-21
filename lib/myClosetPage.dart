@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'myClosetApp/codyPage.dart';
-import 'myClosetApp/weather.dart';
+import 'myClosetApp/defuser.dart';
+import 'myClosetApp/dehumidifier.dart';
 
 class myClosetApp extends StatefulWidget {
   @override
@@ -17,6 +17,9 @@ class _myClosetAppState extends State<myClosetApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
@@ -41,7 +44,7 @@ class _myClosetAppState extends State<myClosetApp> {
               child: InkWell(
                 onTap: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => weatherPage()));
+                      MaterialPageRoute(builder: (context) => dehumidifierPage()));
                 },
                 child: Image(
                   image: AssetImage('images/dehumidifier.png'),
@@ -54,7 +57,7 @@ class _myClosetAppState extends State<myClosetApp> {
               child: InkWell(
                 onTap: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => codyPage()));
+                      MaterialPageRoute(builder: (context) => defuserPage()));
                 },
                 child: Image(
                   image: AssetImage('images/defuser.png'),

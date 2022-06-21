@@ -7,6 +7,9 @@ class homeApp extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: AppBar(
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
