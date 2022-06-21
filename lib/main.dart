@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage>
           BottomNavigationBarItem(
               icon: Icon(Icons.perm_identity), label: '내 옷'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.manage_accounts), label: '내 옷장'),
+              icon: Icon(Icons.manage_accounts), label: 'IoT 제어'),
         ],
       ),
     );

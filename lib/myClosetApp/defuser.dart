@@ -76,6 +76,7 @@ class _defuserPage extends State<defuserPage> {
   Future<Info>? info;
   final myController1 = TextEditingController();
   final myController2 = TextEditingController();
+  String? _selectedTime;
 
   @override
   void initState() {
@@ -94,7 +95,7 @@ class _defuserPage extends State<defuserPage> {
           elevation: 0,
           centerTitle: true,
           title: Text(
-            '방향제 관리',
+            'IoT 제어',
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
         ),
@@ -106,127 +107,176 @@ class _defuserPage extends State<defuserPage> {
               if (snapshot.hasData) {
                 return buildColumn2(snapshot);
               } else if (snapshot.hasError) {
-                return ListView(children: [
-                  TextField(
-                      controller: myController1,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: '예약 시간 입력',
-                      )),
-
-                  TextField(
-                      controller: myController2,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: '예약 분 입력',
-                      )),
-
-                  Text("연결 실패 에러!!", style: TextStyle(fontSize: 25)),
-                  SizedBox(height: 50),
-
-                  ElevatedButton(
-                      onPressed: () {
-                        scant = 0;
-                        varCount2();
-                        _callAPI_1();
-                      },
-                      child: Text('1번째 향')),
-                  SizedBox(height: 10),
-                  ElevatedButton(
-                      onPressed: () {
-                        scant = 1;
-                        varCount2();
-                        _callAPI_2();
-                      },
-                      child: Text('2번째 향')),
-                  SizedBox(height: 10),
-                  ElevatedButton(
-                      onPressed: () {
-                        scant = 2;
-                        varCount2();
-                        _callAPI_3();
-                      },
-                      child: Text('3번째 향')),
-                  SizedBox(height: 10),
-                  ElevatedButton(
-                      onPressed: () {
-                        scant = 3;
-                        varCount2();
-                        _callAPI_4();
-                      },
-                      child: Text('끄기')),
-                  SizedBox(height: 30),
-
-                  // dehumi
-                  Row(
+                return Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
-                        width: 50,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _callAPI();
-                          },
-                          child: Text('월'),
-                        ),
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              FloatingActionButton.large(
+                                onPressed: () {
+                                  scant = 0;
+                                  varCount2();
+                                  _callAPI_1();
+                                },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      '차분한',
+                                    ),
+                                    Text('머스크향')
+                                  ],
+                                ),
+                              ),
+                              FloatingActionButton.large(
+                                onPressed: () {
+                                  scant = 1;
+                                  varCount2();
+                                  _callAPI_2();
+                                },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      '부드러운',
+                                    ),
+                                    Text('라벤더향')
+                                  ],
+                                ),
+                              ),
+                              FloatingActionButton.large(
+                                onPressed: () {
+                                  scant = 2;
+                                  varCount2();
+                                  _callAPI_3();
+                                },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      '달콤한',
+                                    ),
+                                    Text('블랙체리향')
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.red)),
+                            onPressed: () {
+                              scant = 3;
+                              varCount2();
+                              _callAPI_4();
+                            },
+                            child: Text('전체 끄기'),
+                          ),
+                        ],
                       ),
-                      Container(
-                        width: 50,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _callAPI2();
-                          },
-                          child: Text('화'),
-                        ),
+                      SizedBox(height: 30),
+                      // dehumi
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                width: 50,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    _callAPI();
+                                  },
+                                  child: Text('월'),
+                                ),
+                              ),
+                              Container(
+                                width: 50,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    _callAPI2();
+                                  },
+                                  child: Text('화'),
+                                ),
+                              ),
+                              Container(
+                                width: 50,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    _callAPI3();
+                                  },
+                                  child: Text('수'),
+                                ),
+                              ),
+                              Container(
+                                width: 50,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    _callAPI4();
+                                  },
+                                  child: Text('목'),
+                                ),
+                              ),
+                              Container(
+                                width: 50,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    _callAPI5();
+                                  },
+                                  child: Text('금'),
+                                ),
+                              ),
+                              Container(
+                                width: 50,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    _callAPI6();
+                                  },
+                                  child: Text('토'),
+                                ),
+                              ),
+                              Container(
+                                width: 50,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    _callAPI7();
+                                  },
+                                  child: Text('일'),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: () {
+                              Future<TimeOfDay?> selectedTime = showTimePicker(
+                                initialTime: TimeOfDay.now(),
+                                context: context,
+                              );
+                              selectedTime.then((value) {
+                                setState(() {
+                                  if (value == null) {
+                                    _selectedTime = null;
+                                  } else {
+                                    _selectedTime =
+                                        '${value.hour}:${value.minute}';
+                                  }
+                                });
+                              });
+                              scant = 3;
+                              varCount2();
+                              _callAPI_4();
+                            },
+                            child: Text('예약 하기'),
+                          ),
+                        ],
                       ),
-                      Container(
-                        width: 50,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _callAPI3();
-                          },
-                          child: Text('수'),
-                        ),
-                      ),
-                      Container(
-                        width: 50,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _callAPI4();
-                          },
-                          child: Text('목'),
-                        ),
-                      ),
-                      Container(
-                        width: 50,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _callAPI5();
-                          },
-                          child: Text('금'),
-                        ),
-                      ),
-                      Container(
-                        width: 50,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _callAPI6();
-                          },
-                          child: Text('토'),
-                        ),
-                      ),
-                      Container(
-                        width: 50,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _callAPI7();
-                          },
-                          child: Text('일'),
-                        ),
-                      ),
-                    ],
-                  ),
-                ]);
+                    ]);
               }
               return CircularProgressIndicator();
             },
