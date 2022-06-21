@@ -48,7 +48,7 @@ class _ClothAddPageState extends State<ClothAddPage> {
       body: Container(
         padding: EdgeInsets.all(20),
         child: Center(
-          child: ListView(
+          child: Column(
             children: <Widget>[
               TextField(
                 controller: titleController,

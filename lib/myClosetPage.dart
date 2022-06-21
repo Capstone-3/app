@@ -120,12 +120,18 @@ class _myClosetAppState extends State<myClosetApp> {
   final myController1 = TextEditingController();
   final myController2 = TextEditingController();
   String? _selectedTime;
+  int? red;
+  int? green;
+  int? blue;
 
   @override
   void initState() {
     super.initState();
     info = fetchInfo();
     infode = fetchInfode();
+    red = 158;
+    green = 158;
+    blue = 158;
   }
 
   @override
@@ -283,8 +289,7 @@ class _myClosetAppState extends State<myClosetApp> {
                                 child: Text('전체 끄기'),
                               ),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
@@ -309,28 +314,192 @@ class _myClosetAppState extends State<myClosetApp> {
                                     },
                                     child: Text('예약 하기'),
                                   ),
-                                  FloatingActionButton(
-                                    backgroundColor: Colors.grey,
-                                    onPressed: () {
-                                      Future<TimeOfDay?> selectedTime =
-                                          showTimePicker(
-                                        initialTime: TimeOfDay.now(),
-                                        context: context,
-                                      );
-                                      selectedTime.then((value) {
-                                        setState(() {
-                                          if (value == null) {
-                                            _selectedTime = null;
-                                          } else {
-                                            _selectedTime =
-                                                '${value.hour}:${value.minute}';
-                                          }
-                                        });
-                                      });
-                                      scant = 3;
-                                      varCount2();
-                                      _callAPI_4();
-                                    },
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Color.fromRGBO(
+                                            red!, green!, blue!, 100),
+                                        shape: BoxShape.circle),
+                                    width: 30,
+                                    height: 30,
+                                    child: InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return Dialog(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30.0)),
+                                                child: Container(
+                                                  height: 300,
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Text('예약할 향을 선택하세요'),
+                                                      Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          children: [
+                                                            Container(
+                                                              width: 70,
+                                                              height: 70,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                color: Color
+                                                                    .fromRGBO(
+                                                                        253,
+                                                                        253,
+                                                                        150,
+                                                                        100),
+                                                              ),
+                                                              child: InkWell(
+                                                                onTap: () {
+                                                                  scant = 0;
+                                                                  varCount2();
+                                                                  _callAPI_1();
+                                                                  setState(() {
+                                                                    red = 253;
+                                                                    green = 253;
+                                                                    blue = 150;
+                                                                  });
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Text(
+                                                                      '차분한',
+                                                                    ),
+                                                                    Text('머스크향')
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              width: 70,
+                                                              height: 70,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                color: Color
+                                                                    .fromRGBO(
+                                                                        202,
+                                                                        156,
+                                                                        232,
+                                                                        100),
+                                                              ),
+                                                              child: InkWell(
+                                                                onTap: () {
+                                                                  scant = 1;
+                                                                  varCount2();
+                                                                  _callAPI_2();
+                                                                  setState(() {
+                                                                    red = 202;
+                                                                    green = 156;
+                                                                    blue = 232;
+                                                                  });
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Text(
+                                                                      '부드러운',
+                                                                    ),
+                                                                    Text('라벤더향')
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              width: 70,
+                                                              height: 70,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                color: Color
+                                                                    .fromRGBO(
+                                                                        51,
+                                                                        9,
+                                                                        14,
+                                                                        100),
+                                                              ),
+                                                              child: InkWell(
+                                                                onTap: () {
+                                                                  scant = 2;
+                                                                  varCount2();
+                                                                  _callAPI_3();
+                                                                  setState(() {
+                                                                    red = 51;
+                                                                    green = 9;
+                                                                    blue = 14;
+                                                                  });
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Text(
+                                                                      '달콤한',
+                                                                    ),
+                                                                    Text(
+                                                                        '블랙체리향')
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ]),
+                                                      ElevatedButton(
+                                                        style: ButtonStyle(
+                                                          backgroundColor:
+                                                              MaterialStateProperty
+                                                                  .all(Colors
+                                                                      .grey),
+                                                        ),
+                                                        onPressed: () {
+                                                          scant = 3;
+                                                          varCount2();
+                                                          _callAPI_4();
+                                                          setState(() {
+                                                            red = 158;
+                                                            green = 158;
+                                                            blue = 158;
+                                                          });
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text('선택안함'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            });
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),

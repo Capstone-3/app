@@ -54,7 +54,7 @@ class homeApp extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '0 %',
+                        '52 %',
                         style: TextStyle(
                           fontSize: 30,
                           color: Colors.white,
@@ -66,7 +66,7 @@ class homeApp extends StatelessWidget {
                         color: Colors.white,
                       ),
                       Text(
-                        '0 ℃',
+                        '23 ℃',
                         style: TextStyle(
                           fontSize: 30,
                           color: Colors.white,
